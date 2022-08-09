@@ -19,7 +19,9 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return Magnifier(
       enabled: enabled,
-      painter: useCrossHair ? CrosshairMagnifierPainter(color: Colors.red,strokeWidth: 30) : MagnifierPainter(strokeWidth: 20),
+      painter: useCrossHair
+          ? CrosshairMagnifierPainter(color: Colors.red, strokeWidth: 30)
+          : MagnifierPainter(strokeWidth: 20),
       scale: scale,
       size: Size(size, size),
       child: MaterialApp(
@@ -35,7 +37,7 @@ class _MyAppState extends State<MyApp> {
               Expanded(child: MyHomePage(title: 'Magnifier Demo')),
               Row(
                 children: [
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: () {
                       setState(() {
                         enabled = !enabled;
@@ -43,7 +45,7 @@ class _MyAppState extends State<MyApp> {
                     },
                     child: Text(enabled ? "Disable" : "Enable"),
                   ),
-                  RaisedButton(
+                  ElevatedButton(
                     onPressed: () {
                       setState(() {
                         useCrossHair = !useCrossHair;
@@ -84,7 +86,7 @@ class _MyAppState extends State<MyApp> {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
+  MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

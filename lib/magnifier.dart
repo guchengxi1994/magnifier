@@ -48,12 +48,12 @@ class Magnifier extends StatefulWidget {
   final CustomPainter painter;
 
   const Magnifier(
-      {@required this.child,
+      {required this.child,
       this.enabled = true,
       this.scale = 1.2,
       this.size = const Size(80, 80),
       this.painter = const MagnifierPainter(),
-      Key key})
+      Key? key})
       : super(key: key);
 
   @override
@@ -61,9 +61,9 @@ class Magnifier extends StatefulWidget {
 }
 
 class _MagnifierState extends State<Magnifier> {
-  Size _magnifierSize;
-  double _scale;
-  BorderRadius _radius;
+  late Size _magnifierSize;
+  late double _scale;
+  late BorderRadius _radius;
 
   Offset _magnifierPosition = Offset(0, 0);
   Matrix4 matrix = Matrix4.identity();
@@ -110,6 +110,7 @@ class _MagnifierState extends State<Magnifier> {
       });
     }
 
+    // print(matrix.storage);
     return Stack(
       alignment: Alignment.center,
       children: [
@@ -124,6 +125,7 @@ class _MagnifierState extends State<Magnifier> {
                 onPanUpdate: _onPanUpdate,
                 child: BackdropFilter(
                   filter: ImageFilter.matrix(matrix.storage),
+                  // filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
                   child: CustomPaint(
                     painter: widget.painter,
                     size: _magnifierSize,
